@@ -7,6 +7,43 @@ a = wrap.sprite.add_text('1', 50, 50,)
 ammo=wrap.sprite.add('battle_city_items',50,50,'bullet')
 wrap.sprite.set_angle(ammo,90)
 
+#down1
+wrap.sprite.add('battle_city_items',550,250,'block_brick')
+wrap.sprite.add('battle_city_items',550,282,'block_brick')
+wrap.sprite.add('battle_city_items',550,314,'block_brick')
+wrap.sprite.add('battle_city_items',550,346,'block_brick')
+#down2
+wrap.sprite.add('battle_city_items',550,378,'block_brick')
+wrap.sprite.add('battle_city_items',550,410,'block_brick')
+wrap.sprite.add('battle_city_items',550,442,'block_brick')
+wrap.sprite.add('battle_city_items',550,474,'block_brick')
+#down3
+wrap.sprite.add('battle_city_items',774,378,'block_brick')
+wrap.sprite.add('battle_city_items',774,410,'block_brick')
+wrap.sprite.add('battle_city_items',774,442,'block_brick')
+wrap.sprite.add('battle_city_items',774,474,'block_brick')
+#down4
+wrap.sprite.add('battle_city_items',774,250,'block_brick')
+wrap.sprite.add('battle_city_items',774,282,'block_brick')
+wrap.sprite.add('battle_city_items',774,314,'block_brick')
+wrap.sprite.add('battle_city_items',774,346,'block_brick')
+#right1
+wrap.sprite.add('battle_city_items',582,250,'block_brick')
+wrap.sprite.add('battle_city_items',614,250,'block_brick')
+wrap.sprite.add('battle_city_items',646,250,'block_brick')
+#right2
+wrap.sprite.add('battle_city_items',582,474,'block_brick')
+wrap.sprite.add('battle_city_items',614,474,'block_brick')
+wrap.sprite.add('battle_city_items',646,474,'block_brick')
+#right3
+wrap.sprite.add('battle_city_items',678,474,'block_brick')
+wrap.sprite.add('battle_city_items',710,474,'block_brick')
+wrap.sprite.add('battle_city_items',742,474,'block_brick')
+#right4
+wrap.sprite.add('battle_city_items',678,250,'block_brick')
+wrap.sprite.add('battle_city_items',710,250,'block_brick')
+wrap.sprite.add('battle_city_items',742,250,'block_brick')
+
 @wrap.on_mouse_down(1)
 def shot():
     global ammo
@@ -55,3 +92,6 @@ def goleft():
 @wrap.always(1000/50)
 def fav():
     wrap.sprite.move_at_angle_dir(ammo,5)
+
+#база
+wrap.sprite.add('battle_city_items',600,282,'base')

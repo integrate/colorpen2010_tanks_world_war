@@ -1,11 +1,14 @@
-import wrap
+import wrap, random
 
 wrap.world.create_world(1300, 700)
 wrap.world.set_title('TANKS WORLD TYCOON')
 player1 = wrap.sprite.add('battle_city_tanks', 1300 / 2, 700 / 2)
 a = wrap.sprite.add_text('1', 50, 50, )
 ammo1 = wrap.sprite.add('battle_city_items', 50, 50, 'bullet')
+ammo3 = wrap.sprite.add('battle_city_items', 50, 50, 'bullet')
 wrap.sprite.set_angle(ammo1, 90)
+
+wrag = wrap.sprite.add('battle_city_tanks', 700, 500, 'tank_enemy_size1_white1')
 
 
 def wall_builder(x, y):
@@ -52,6 +55,27 @@ def shot():
     wrap.sprite.move_to(ammo1, x, y)
     vmanip = wrap.sprite.get_angle(player1)
     wrap.sprite.set_angle(ammo1, vmanip)
+
+
+def botshot():
+    global ammo3
+    wrap.sprite.remove(ammo3)
+    ammo3 = wrap.sprite.add('battle_city_items', 50, 50, 'bullet')
+    x, y = wrap.sprite.get_pos(wrag)
+    wrap.sprite.move_to(ammo3, x, y)
+    vmanip = wrap.sprite.get_angle(wrag)
+    wrap.sprite.set_angle(ammo3, vmanip)
+
+
+@wrap.always(1000)
+def bot():
+    botdeistvia = random.randint(1, 3)
+    if botdeistvia==1:
+        botshot()
+    elif botdeistvia==2:
+        wrap.sprite.set_angle(wrag,random.choice([0,90,180,-90]))
+    elif botdeistvia==3:
+        wrap.actions.move_at_angle_dir(wrag,random.randint(5,200))
 
 
 @wrap.on_key_always(wrap.K_w)
@@ -105,8 +129,15 @@ def goleft():
 @wrap.always(1000 / 50)
 def fav():
     wrap.sprite.move_at_angle_dir(ammo1, 5)
-    if wrap.sprite.is_collide_any_sprite(ammo1,spisocsten):
+    if wrap.sprite.is_collide_any_sprite(ammo1, spisocsten):
         wrap.sprite.hide(ammo1)
+
+
+@wrap.always(1000 / 50)
+def botfav():
+    wrap.sprite.move_at_angle_dir(ammo3, 5)
+    if wrap.sprite.is_collide_any_sprite(ammo3, spisocsten):
+        wrap.sprite.hide(ammo3)
 
 
 # база

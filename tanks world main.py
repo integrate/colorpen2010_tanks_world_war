@@ -2,13 +2,13 @@ import wrap, random
 
 wrap.world.create_world(1300, 700)
 wrap.world.set_title('TANKS WORLD TYCOON')
-player1 = wrap.sprite.add('battle_city_tanks', 1300 / 2, 700 / 2)
+player1 = wrap.sprite.add('battle_city_tanks', 1300 / 2, 700 / 2,'tank_player_size1_green1')
 a = wrap.sprite.add_text('1', 50, 50, )
 ammo1 = wrap.sprite.add('battle_city_items', 50, 50, 'bullet')
 ammo3 = wrap.sprite.add('battle_city_items', 50, 50, 'bullet')
 wrap.sprite.set_angle(ammo1, 90)
-
-wrag = wrap.sprite.add('battle_city_tanks', 700, 500, 'tank_enemy_size1_white1')
+wragid=False
+wrag = wrap.sprite.add('battle_city_tanks', 750, 550, 'tank_enemy_size1_white1')
 
 
 def wall_builder(x, y):
@@ -69,13 +69,24 @@ def botshot():
 
 @wrap.always(1000)
 def bot():
+    global wragid
     botdeistvia = random.randint(1, 3)
-    if botdeistvia==1:
+    if botdeistvia == 1:
+        wragid =False
         botshot()
-    elif botdeistvia==2:
-        wrap.sprite.set_angle(wrag,random.choice([0,90,180,-90]))
-    elif botdeistvia==3:
-        wrap.actions.move_at_angle_dir(wrag,random.randint(5,200))
+    elif botdeistvia == 2:
+        wragid =False
+        wrap.sprite.set_angle(wrag, random.choice([0, 90, 180, -90]))
+    elif botdeistvia == 3:
+        wragid=True
+
+
+@wrap.always
+def gobot():
+    if wragid==True:
+        wrap.sprite.move_at_angle_dir(wrag, 5)
+        if wrap.sprite.is_collide_any_sprite(wrag, spisocsten):
+            wrap.sprite.move_at_angle_dir(wrag,-5)
 
 
 @wrap.on_key_always(wrap.K_w)

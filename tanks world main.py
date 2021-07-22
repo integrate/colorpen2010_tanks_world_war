@@ -2,6 +2,15 @@ import wrap, random
 
 wrap.world.create_world(1300, 700)
 wrap.world.set_title('TANKS WORLD TYCOON')
+
+# for y in range(1,701,16):
+#     for x in range(1, 1301, 16):
+#         wrap.sprite.add('battle_city_items', x, y, 'block_bushes')
+
+for y in [200]:
+    for x in range(1,1301,16):
+        woda=wrap.sprite.add('battle_city_items',x,y,'block_water3')
+
 player1 = wrap.sprite.add('battle_city_tanks', 1300 / 2, 700 / 2,'tank_player_size1_green1')
 a = wrap.sprite.add_text('1', 50, 50, )
 ammo1 = wrap.sprite.add('battle_city_items', 50, 50, 'bullet')
@@ -9,7 +18,6 @@ ammo3 = wrap.sprite.add('battle_city_items', 50, 50, 'bullet')
 wrap.sprite.set_angle(ammo1, 90)
 wragid=False
 wrag = wrap.sprite.add('battle_city_tanks', 750, 550, 'tank_enemy_size1_white1')
-
 
 def wall_builder(x, y):
     stena = wrap.sprite.add('battle_city_items', x, y, 'block_brick')

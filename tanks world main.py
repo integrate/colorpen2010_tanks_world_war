@@ -3,6 +3,8 @@ import wrap, random
 wrap.world.create_world(1300, 700)
 wrap.world.set_title('TANKS WORLD TYCOON')
 
+net = None
+
 # for y in range(1,701,16):
 #     for x in range(1, 1301, 16):
 #         wrap.sprite.add('battle_city_items', x, y, 'block_bushes')
@@ -54,6 +56,15 @@ wall_builder(678, 474)
 wall_builder(678, 250)
 wall_builder(710, 250)
 wall_builder(742, 250)
+
+
+@wrap.always(15000)
+def star():
+    global net
+    stary = random.randint(14, 686)
+    starx = random.randint(15, 1285)
+    wrap.sprite.remove(net)
+    net = wrap.sprite.add('battle_city_items', starx, stary, 'block_gift_star')
 
 
 @wrap.on_mouse_down(1)
@@ -154,8 +165,18 @@ def goleft():
 @wrap.always(1000 / 50)
 def fav():
     wrap.sprite.move_at_angle_dir(ammo1, 5)
-    if wrap.sprite.is_collide_any_sprite(ammo1, spisocsten):
+    a = wrap.sprite.is_collide_any_sprite(ammo1, spisocsten)
+    if net!=None:
+        b=wrap.sprite.is_collide_sprite(ammo1, net)
+
+        if b ==True:
+            wrap.sprite.hide(ammo1)
+            wrap.sprite.hide(net)
+
+    if a != None:
         wrap.sprite.hide(ammo1)
+        wrap.sprite.remove(a)
+
     if wrap.sprite.is_collide_sprite(ammo1, wrag):
         wrap.sprite.hide(ammo1)
         wrap.sprite.hide(wrag)
@@ -164,11 +185,15 @@ def fav():
 @wrap.always(1000 / 50)
 def botfav():
     wrap.sprite.move_at_angle_dir(ammo3, 5)
-    if wrap.sprite.is_collide_any_sprite(ammo3, spisocsten) :
+    a = wrap.sprite.is_collide_any_sprite(ammo3, spisocsten)
+
+    if a != None:
         wrap.sprite.hide(ammo3)
-    if wrap.sprite.is_collide_sprite(ammo3,player1):
+        wrap.sprite.remove(a)
+
+    if wrap.sprite.is_collide_sprite(ammo3, player1):
         wrap.sprite.hide(ammo3)
-        wrap.sprite.move_to(player1,1300/2,700/2)
+        wrap.sprite.move_to(player1, 1300 / 2, 700 / 2)
 
 
 # база

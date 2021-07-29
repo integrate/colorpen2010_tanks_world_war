@@ -1,7 +1,17 @@
 import wrap, random
-
+wrap.add_sprite_dir('tanks textures')
 wrap.world.create_world(1300, 700)
 wrap.world.set_title('TANKS WORLD TYCOON')
+
+mina=wrap.sprite.add('add',50,50,'MINA')
+def wsriv_mini():
+    if wrap.sprite.is_collide_sprite(mina, player1):
+        ss = wrap.sprite.is_visible(mina)
+        if ss == True:
+            wrap.sprite.hide(mina)
+            wrap.sprite.move_to(player1, 1300 / 2, 700 / 2)
+
+
 
 net = None
 
@@ -119,6 +129,8 @@ def goup():
     if s != None or w != None:
         wrap.sprite.move(player1, 0, 5)
 
+    wsriv_mini()
+
     x, y = wrap.sprite.get_pos(player1)
     wrap.sprite.move_to(a, x, y)
 
@@ -128,8 +140,9 @@ def godown():
     wrap.sprite.move(player1, 0, 5)
     wrap.sprite.set_angle(player1, 180)
 
-    if wrap.sprite.is_collide_any_sprite(player1, spisocsten) or wrap.sprite.is_collide_any_sprite(player1,
-                                                                                                   spisok_wodi):
+    wsriv_mini()
+
+    if wrap.sprite.is_collide_any_sprite(player1, spisocsten) or wrap.sprite.is_collide_any_sprite(player1,spisok_wodi):
         wrap.sprite.move(player1, 0, -5)
 
     x, y = wrap.sprite.get_pos(player1)
@@ -140,6 +153,8 @@ def godown():
 def goright():
     wrap.sprite.move(player1, 5, 0)
     wrap.sprite.set_angle(player1, 90)
+
+    wsriv_mini()
 
     if wrap.sprite.is_collide_any_sprite(player1, spisocsten) or wrap.sprite.is_collide_any_sprite(player1,
                                                                                                    spisok_wodi):
@@ -153,6 +168,8 @@ def goright():
 def goleft():
     wrap.sprite.move(player1, -5, 0)
     wrap.sprite.set_angle(player1, -90)
+
+    wsriv_mini()
 
     if wrap.sprite.is_collide_any_sprite(player1, spisocsten) or wrap.sprite.is_collide_any_sprite(player1,
                                                                                                    spisok_wodi):

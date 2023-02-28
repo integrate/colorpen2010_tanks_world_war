@@ -216,3 +216,6 @@ def botfav():
 # база
 
 wrap.sprite.add('battle_city_items', 600, 282, 'base')
+
+import wrap_py
+wrap_py.app.start()
